@@ -7,30 +7,7 @@ import {
   triangleWave,
 } from "./geometry.js";
 import { snellInteraction } from "./physics.js";
-
-const SHAPES = {
-  nominal: [
-    { x: 0.25, y: 0.53 },
-    { x: 0.41, y: 0.53 },
-    { x: 0.57, y: 0.55 },
-    { x: 0.74, y: 0.39 },
-    { x: 0.92, y: 0.53 },
-  ],
-  straight: [
-    { x: 0.25, y: 0.5 },
-    { x: 0.42, y: 0.5 },
-    { x: 0.58, y: 0.5 },
-    { x: 0.75, y: 0.5 },
-    { x: 0.92, y: 0.5 },
-  ],
-  stressed: [
-    { x: 0.25, y: 0.52 },
-    { x: 0.48, y: 0.2 },
-    { x: 0.65, y: 0.68 },
-    { x: 0.48, y: 0.78 },
-    { x: 0.92, y: 0.51 },
-  ],
-};
+import { FIBER_SHAPES } from "./config.js";
 
 export class FiberBench {
   constructor(canvas, onStateChange, onInteractionEnd, onSelectionChange) {
@@ -39,7 +16,7 @@ export class FiberBench {
     this.onStateChange = onStateChange;
     this.onInteractionEnd = onInteractionEnd;
     this.onSelectionChange = onSelectionChange;
-    this.normalizedPoints = clonePoints(SHAPES.nominal);
+    this.normalizedPoints = clonePoints(FIBER_SHAPES.nominal);
     this.width = 0;
     this.height = 0;
     this.path = [];
@@ -55,7 +32,7 @@ export class FiberBench {
   }
 
   resetShape(name = "nominal") {
-    this.normalizedPoints = clonePoints(SHAPES[name] ?? SHAPES.nominal);
+    this.normalizedPoints = clonePoints(FIBER_SHAPES[name] ?? FIBER_SHAPES.nominal);
     this.selected = { type: "node", index: 2 };
     this.rebuildGeometry();
   }

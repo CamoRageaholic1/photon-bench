@@ -1,0 +1,78 @@
+import { DEFAULT_STATE } from "./physics.js";
+
+export const FIBER_SHAPES = {
+  nominal: [
+    { x: 0.25, y: 0.53 },
+    { x: 0.41, y: 0.53 },
+    { x: 0.57, y: 0.53 },
+    { x: 0.74, y: 0.39 },
+    { x: 0.92, y: 0.53 },
+  ],
+  straight: [
+    { x: 0.25, y: 0.5 },
+    { x: 0.42, y: 0.5 },
+    { x: 0.58, y: 0.5 },
+    { x: 0.75, y: 0.5 },
+    { x: 0.92, y: 0.5 },
+  ],
+  stressed: [
+    { x: 0.25, y: 0.52 },
+    { x: 0.48, y: 0.2 },
+    { x: 0.65, y: 0.68 },
+    { x: 0.48, y: 0.78 },
+    { x: 0.92, y: 0.51 },
+  ],
+};
+
+export const SIMULATION_PRESETS = {
+  default: {
+    ...DEFAULT_STATE,
+    emitterYRatio: 0.53,
+    laserAngleDeg: 0,
+    shape: "nominal",
+  },
+  telecom: {
+    ...DEFAULT_STATE,
+    wavelengthNm: 1550,
+    mode: "single",
+    profile: "graded",
+    fiberLengthKm: 10,
+    bitRateGbps: 10,
+    spliceAlignment: "core",
+    spliceQuality: 96,
+    endFace: "clean",
+    laserAngleDeg: 0,
+    emitterYRatio: 0.53,
+    shape: "nominal",
+  },
+  om3: {
+    ...DEFAULT_STATE,
+    wavelengthNm: 850,
+    mode: "multi",
+    profile: "graded",
+    fiberLengthKm: 0.3,
+    bitRateGbps: 10,
+    spliceAlignment: "cladding",
+    spliceQuality: 86,
+    endFace: "clean",
+    laserAngleDeg: 0,
+    emitterYRatio: 0.5,
+    shape: "straight",
+  },
+  stress: {
+    ...DEFAULT_STATE,
+    wavelengthNm: 405,
+    mode: "multi",
+    profile: "step",
+    fiberLengthKm: 0.8,
+    bitRateGbps: 25,
+    inputPowerDbm: -3,
+    spliceAlignment: "cladding",
+    spliceQuality: 58,
+    endFace: "dirty",
+    contamination: 82,
+    laserAngleDeg: 8.5,
+    emitterYRatio: 0.47,
+    shape: "stressed",
+  },
+};

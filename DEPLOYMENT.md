@@ -4,7 +4,7 @@ Photon Bench is deployed from the `main` branch to the Cloudflare Pages project 
 
 ## Release path
 
-1. GitHub Actions runs the twelve physics and geometry tests.
+1. GitHub Actions runs the fourteen physics, geometry, preset, and release-safety tests.
 2. `npm run build` copies only `index.html`, `src/`, and `_headers` into `dist/`.
 3. `cloudflare/wrangler-action` publishes `dist/` to Cloudflare Pages.
 4. Cloudflare retains immutable deployment history while the custom domain follows the current production deployment.

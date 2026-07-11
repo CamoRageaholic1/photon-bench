@@ -1,8 +1,9 @@
 import { cpSync, existsSync, mkdirSync, rmSync, statSync } from "node:fs";
 import { resolve } from "node:path";
+import { resolveBuildOutput } from "./build-paths.mjs";
 
 const root = resolve(import.meta.dirname, "..");
-const output = resolve(process.env.BUILD_DIR || resolve(root, "dist"));
+const output = resolveBuildOutput(root, process.env.BUILD_DIR);
 const required = ["index.html", "src", "_headers"];
 
 for (const entry of required) {

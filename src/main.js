@@ -1,5 +1,6 @@
 import { clamp } from "./geometry.js";
 import { FiberBench } from "./fiber-bench.js";
+import { SIMULATION_PRESETS } from "./config.js";
 import {
   calculateLink,
   DEFAULT_STATE,
@@ -431,58 +432,7 @@ function syncControls() {
 }
 
 function applyPreset(name) {
-  const presets = {
-    default: {
-      ...DEFAULT_STATE,
-      emitterYRatio: 0.53,
-      shape: "nominal",
-    },
-    telecom: {
-      ...DEFAULT_STATE,
-      wavelengthNm: 1550,
-      mode: "single",
-      profile: "graded",
-      fiberLengthKm: 10,
-      bitRateGbps: 10,
-      spliceAlignment: "core",
-      spliceQuality: 96,
-      endFace: "clean",
-      laserAngleDeg: 0,
-      emitterYRatio: 0.53,
-      shape: "nominal",
-    },
-    om3: {
-      ...DEFAULT_STATE,
-      wavelengthNm: 850,
-      mode: "multi",
-      profile: "graded",
-      fiberLengthKm: 0.3,
-      bitRateGbps: 10,
-      spliceAlignment: "cladding",
-      spliceQuality: 86,
-      endFace: "clean",
-      laserAngleDeg: 2.5,
-      emitterYRatio: 0.53,
-      shape: "straight",
-    },
-    stress: {
-      ...DEFAULT_STATE,
-      wavelengthNm: 405,
-      mode: "multi",
-      profile: "step",
-      fiberLengthKm: 0.8,
-      bitRateGbps: 25,
-      inputPowerDbm: -3,
-      spliceAlignment: "cladding",
-      spliceQuality: 58,
-      endFace: "dirty",
-      contamination: 82,
-      laserAngleDeg: 8.5,
-      emitterYRatio: 0.47,
-      shape: "stressed",
-    },
-  };
-  const preset = presets[name] ?? presets.default;
+  const preset = SIMULATION_PRESETS[name] ?? SIMULATION_PRESETS.default;
   const { shape, ...nextState } = preset;
   state = { ...nextState, wave: wavelengthDefinition(nextState.wavelengthNm) };
   bench.resetShape(shape);
