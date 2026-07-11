@@ -1,0 +1,17 @@
+{
+  "name": "photon-bench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive fiber-optic physics and digital link simulator",
+  "homepage": "https://photonbench.camozeroday.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CamoRageaholic1/photon-bench.git"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "python3 -m http.server 4173",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
